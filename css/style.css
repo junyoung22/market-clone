@@ -8,7 +8,7 @@ body {
 }
 
 .media-info-msg {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -20,9 +20,9 @@ body {
     opacity: 1;
 }
 /* 순서가 바뀌면 안됨. */
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 500px) {
     .media-info-msg {
-        opacity: 0;
+        display: none;
         
     }
 }
