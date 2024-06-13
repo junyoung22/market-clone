@@ -56,7 +56,20 @@ const renderData = (data) => {
 };
 
 const fetchList = async () => {
-  const res = await fetch("/items");  // 백엔드에 요청하면 select값을 넘겨줌
+  const accessToken = window.localStorage.getItem("token");
+  const res = await fetch("/items", {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });  // 백엔드에 요청하면 select값을 넘겨줌
+
+if (res.status === 401) {
+  alert("로그인이 필요합니다!");
+  window.location.pathname = "/login.html";
+  return;
+}
+
+
   const data = await res.json();
   console.log(data);
   renderData(data); // 넘겨받은 값을 renderDate에 넘겨줌
